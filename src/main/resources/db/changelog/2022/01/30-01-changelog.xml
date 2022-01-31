@@ -5,11 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.7.xsd">
 
-    <changeSet id="0" author="srs">
-        <preConditions>
-            <!--dbms type="db2"/-->
-        </preConditions>
+    <!--dbms="db2"-->
+    <changeSet id="2" author="srs">
+        <sqlFile encoding="utf8"
+                 path="db/changelog/2022/01/01.add-product-columns.sql"/>
     </changeSet>
-    <include file="2022/01/29-01-changelog.xml" relativeToChangelogFile="true" />
-    <include file="2022/01/30-01-changelog.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

@@ -1,6 +1,5 @@
 package com.income.db2demo.controller;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.income.db2demo.dto.ProductDto;
 import com.income.db2demo.entity.Product;
 import com.income.db2demo.mapper.MapStructMapper;
@@ -28,24 +27,24 @@ public class ProductController {
     }
 
     @RequestMapping("/")
-    public String redirToList(){
+    public String redirToList() {
         return "redirect:/product/list";
     }
 
     @RequestMapping({"/product/list", "/product"})
-    public String listProducts(Model model){
+    public String listProducts(Model model) {
         model.addAttribute("products", productService.listAll());
         return "product/list";
     }
 
     @RequestMapping("/product/show/{id}")
-    public String getProduct(@PathVariable String id, Model model){
+    public String getProduct(@PathVariable String id, Model model) {
         model.addAttribute("product", productService.getById(Long.valueOf(id)));
         return "product/show";
     }
 
     @RequestMapping("product/edit/{id}")
-    public String edit(@PathVariable String id, Model model){
+    public String edit(@PathVariable String id, Model model) {
         Product product = productService.getById(Long.valueOf(id));
         ProductDto productDto = mapStructMapper.productToProductDTO(product);
 
@@ -54,25 +53,24 @@ public class ProductController {
     }
 
     @RequestMapping("/product/new")
-    public String newProduct(Model model){
+    public String newProduct(Model model) {
         model.addAttribute("productDto", new ProductDto());
         return "product/productdto";
     }
 
     @RequestMapping(value = "/product", method = RequestMethod.POST)
-    public String saveOrUpdateProduct(@Valid ProductDto productDto, BindingResult bindingResult){
+    public String saveOrUpdateProduct(@Valid ProductDto productDto, BindingResult bindingResult) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "product/productdto";
         }
 
         Product savedProduct = productService.saveOrUpdateProductDto(productDto);
-
         return "redirect:/product/show/" + savedProduct.getId();
     }
 
     @RequestMapping("/product/delete/{id}")
-    public String delete(@PathVariable String id){
+    public String delete(@PathVariable String id) {
         productService.delete(Long.valueOf(id));
         return "redirect:/product/list";
     }

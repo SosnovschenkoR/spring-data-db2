@@ -1,7 +1,7 @@
 # spring-data-db2
 ### Overview
 This Maven project contains the Java code for Spring Data DB2 entities and repositories.
-
+In-memory DB H2 for integration tests.
 
 ### Working with the Code
 The project was developed and tested using Java 8 and also include

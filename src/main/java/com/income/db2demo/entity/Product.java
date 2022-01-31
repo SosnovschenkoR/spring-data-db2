@@ -6,12 +6,24 @@ import java.math.BigDecimal;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    @Column(nullable = false, length = 200)
     private String description;
     private BigDecimal price;
+    @Column(name="imageurl")
     private String imageUrl;
+
+    public Product() {
+    }
+
+    public Product(Long id, String description, BigDecimal price, String imageUrl) {
+        this.id = id;
+        this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
+    }
 
     public BigDecimal getPrice() {
         return price;
